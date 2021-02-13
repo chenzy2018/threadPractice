@@ -1,4 +1,4 @@
-package main.java.com.org.czy.ThreadPractice;
+package com.thread.juc;
 
 import java.util.concurrent.CountDownLatch;
 
