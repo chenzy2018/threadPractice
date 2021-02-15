@@ -14,7 +14,7 @@ import java.util.List;
  * 构造函数必须给一个队列，用于保存被垃圾回收的虚引用对象，即当队列有值就表示有虚引用对像被垃圾回收了
  *
  * NIO(Netty)中的DirectByteBuffer(直接内存)可以直接指向堆外内存(由操作系统直接管理)，此时gc是无法回收这部分，gc只能回收堆内存
- * 监测Queue,当有值的时候自己回收堆外内存
+ * 监测Queue,当有值的时候自己回收堆外内存(用Unsafe类的freeMemory方法回收)
  */
 public class TestPhantomReference {
 

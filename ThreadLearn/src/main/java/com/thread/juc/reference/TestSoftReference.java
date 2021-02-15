@@ -3,7 +3,7 @@ package com.thread.juc.reference;
 import java.lang.ref.SoftReference;
 
 /**
- * 弱引用
+ * 软引用
  *
  * 当内存够用的时候，不垃圾回收，当内存不够用的时候，就垃圾回收掉
  *
