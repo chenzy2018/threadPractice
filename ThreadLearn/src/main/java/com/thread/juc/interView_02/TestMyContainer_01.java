@@ -8,7 +8,7 @@ import java.util.LinkedList;
  * 存在问题：使用了notifyAll，唤醒的所有线程(包括消费者和生产者线程)，因为更多的锁争抢
  * 理想情况应该生产者唤醒消费者，消费者唤醒生产者，同类型不互相唤醒
  */
-public class MyContainer_01<T> {
+public class TestMyContainer_01<T> {
 
     private LinkedList<T> linkedList = new LinkedList<>();
     final private int max = 10;
@@ -51,7 +51,7 @@ public class MyContainer_01<T> {
     }
 
     public static void main(String[] args) {
-        MyContainer_01<String> myContainer = new MyContainer_01<String>();
+        TestMyContainer_01<String> myContainer = new TestMyContainer_01<String>();
         for (int i = 0; i < 2; i++) {
             new Thread(()->{
                 for (int j = 0; j < 10;j++) {

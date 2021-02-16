@@ -10,7 +10,7 @@ import java.util.concurrent.locks.ReentrantLock;
  *
  * 使用
  */
-public class MyContainer_02<T> {
+public class TestMyContainer_02<T> {
 
     private LinkedList<T> linkedList = new LinkedList<>();
     final private int max = 10;
@@ -64,7 +64,7 @@ public class MyContainer_02<T> {
     }
 
     public static void main(String[] args) {
-        MyContainer_02<String> myContainer = new MyContainer_02<String>();
+        TestMyContainer_02<String> myContainer = new TestMyContainer_02<String>();
         for (int i = 0; i < 2; i++) {
             new Thread(()->{
                 for (int j = 0; j < 10;j++) {
