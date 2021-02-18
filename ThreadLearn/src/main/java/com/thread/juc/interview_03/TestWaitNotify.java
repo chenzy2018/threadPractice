@@ -38,12 +38,12 @@ public class TestWaitNotify {
         t2.start();
         t1.start();
 
-        try {
-            t1.join();
-            t2.join();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+//        try {
+//            t1.join();
+//            t2.join();
+//        } catch (InterruptedException e) {
+//            e.printStackTrace();
+//        }
 
     }
 }

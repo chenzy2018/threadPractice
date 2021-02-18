@@ -9,7 +9,6 @@ public class TestLockSupport {
 
     public static void main(String[] args) {
 
-
         t1 = new Thread(()->{
             for (int i = 0; i < 4; i++) {
                 System.out.print(i);

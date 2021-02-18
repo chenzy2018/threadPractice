@@ -8,6 +8,7 @@ import java.util.concurrent.Exchanger;
  * 交换
  *
  * 用于两个线程之间交换数据
+ * 两个线程都需要阻塞到交换完才行
  */
 public class TestExchange {
 
