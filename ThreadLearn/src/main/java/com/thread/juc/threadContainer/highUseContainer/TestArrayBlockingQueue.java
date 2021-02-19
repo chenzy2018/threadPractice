@@ -1,9 +1,8 @@
-package com.thread.juc.threadPool.highUseContainer;
+package com.thread.juc.threadContainer.highUseContainer;
 
 import java.util.Random;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.TimeUnit;
 
 /**
  * ArrayBlockingQueue的使用

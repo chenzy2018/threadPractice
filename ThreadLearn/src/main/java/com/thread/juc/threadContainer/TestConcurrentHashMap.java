@@ -1,10 +1,16 @@
-package com.thread.juc.threadPool;
+package com.thread.juc.threadContainer;
 
-import java.util.*;
+import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
-public class TestSynchronizeHashMap {
+/**
+ * ConcurrentHashMap
+ *
+ * 效率提升在读，写的效率和其他的差不多
+ */
+public class TestConcurrentHashMap {
 
-    static Map<UUID,UUID> map= Collections.synchronizedMap(new HashMap<UUID,UUID>());
+    static ConcurrentHashMap<UUID,UUID> map = new ConcurrentHashMap<>();
     static int count = TestContants.count;
     static UUID[] keys = new UUID[count];
     static UUID[] values = new UUID[count];

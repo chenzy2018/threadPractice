@@ -1,4 +1,4 @@
-package com.thread.juc.threadPool.highUseContainer;
+package com.thread.juc.threadContainer.highUseContainer;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;

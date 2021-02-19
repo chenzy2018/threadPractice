@@ -1,11 +1,8 @@
-package com.thread.juc.threadPool.highUseContainer;
+package com.thread.juc.threadContainer.highUseContainer;
 
 import java.util.List;
-import java.util.Map;
 import java.util.Random;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.concurrent.CountDownLatch;
 
 /**
  * CopyOrWriteList使用

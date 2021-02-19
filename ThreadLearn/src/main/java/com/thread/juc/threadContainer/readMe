@@ -1,0 +1,14 @@
+容器演变：
+容器有两个顶层接口：collection和Map
+实现了collection的容器：
+    List：常用
+        vocter：加锁的版本，现在基本不用了
+    Set：常用
+    Queue：用于高并发环境，其中的BlockingQueue是线程池的基础
+
+实现Map接口的容器：
+    hashTable：最早实现Map接口的容器，方法都加了synchronize，所以是线程安全，但是效率就差，现在基本不会用这种容器了
+    hashMap：由于hashTable效率问题开发的，方法都没有加锁，所以线程不安全
+    synchronizeHashMap：由于hashMap是纯粹没有锁的，因此可以同Collection.synchronizeHashMap()方式把HashMap变成带锁的版本
+        锁的粒度比HashTable小(HashTable锁在方法上)，不过效率还是一般
+    concurrentHashMap：

@@ -1,19 +1,14 @@
-package com.thread.juc.threadPool;
+package com.thread.juc.threadContainer;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
-import java.util.concurrent.CountDownLatch;
+import java.util.*;
 
-public class TestHashMap {
+public class TestSynchronizeHashMap {
 
-    static HashMap<UUID,UUID> map=new HashMap<UUID,UUID>();
+    static Map<UUID,UUID> map= Collections.synchronizedMap(new HashMap<UUID,UUID>());
     static int count = TestContants.count;
     static UUID[] keys = new UUID[count];
     static UUID[] values = new UUID[count];
     static final int threadCount = TestContants.threadCount;
-    static CountDownLatch countDownLatch = new CountDownLatch(threadCount-1);
 
     static {
         for (int i = 0; i < count; i++) {
@@ -35,7 +30,6 @@ public class TestHashMap {
             for (int i = start; i < start+gap; i++) {
                 map.put(keys[i],values[i]);
             }
-            countDownLatch.countDown();
         }
     }
 
@@ -56,12 +50,6 @@ public class TestHashMap {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }
-
-        try {
-            countDownLatch.await();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
         }
 
         long end = System.currentTimeMillis();

@@ -1,4 +1,4 @@
-package com.thread.juc.threadPool;
+package com.thread.juc.threadContainer;
 
 /**
  * 基础类

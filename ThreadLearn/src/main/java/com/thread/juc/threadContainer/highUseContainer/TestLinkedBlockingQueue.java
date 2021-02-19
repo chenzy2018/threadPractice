@@ -1,10 +1,7 @@
-package com.thread.juc.threadPool.highUseContainer;
-
-import com.thread.utils.ThreadUtil;
+package com.thread.juc.threadContainer.highUseContainer;
 
 import java.util.Random;
 import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
 import java.util.concurrent.LinkedBlockingQueue;
 
 /**

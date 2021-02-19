@@ -1,23 +1,22 @@
-package com.thread.juc.threadPool;
+package com.thread.juc.threadContainer;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Hashtable;
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CountDownLatch;
 
 /**
- * ConcurrentHashMap
+ * HashTable
  *
- * 效率提升在读，写的效率和其他的差不多
+ * 方法加锁，线程安全，效率较差，基本不用
  */
-public class TestConcurrentHashMap {
+public class TestHashTable {
 
-    static ConcurrentHashMap<UUID,UUID> map = new ConcurrentHashMap<>();
+    static Hashtable<UUID, UUID> hashtable = new Hashtable<>();
     static int count = TestContants.count;
     static UUID[] keys = new UUID[count];
     static UUID[] values = new UUID[count];
     static final int threadCount = TestContants.threadCount;
+    static CountDownLatch countDownLatch = new CountDownLatch(threadCount);
 
     static {
         for (int i = 0; i < count; i++) {
@@ -37,8 +36,9 @@ public class TestConcurrentHashMap {
         @Override
         public void run() {
             for (int i = start; i < start+gap; i++) {
-                map.put(keys[i],values[i]);
+                hashtable.put(keys[i],values[i]);
             }
+            countDownLatch.countDown();
         }
     }
 
@@ -46,7 +46,7 @@ public class TestConcurrentHashMap {
         long start = System.currentTimeMillis();
         Thread[] threads = new Thread[threadCount];
         for (int i = 0; i < threadCount; i++) {
-            threads[i] = new TestHashTable.MyThread(i*(count/threadCount));
+            threads[i] = new MyThread(i*(count/threadCount));
         }
 
         for(Thread thread : threads){
@@ -60,10 +60,15 @@ public class TestConcurrentHashMap {
                 e.printStackTrace();
             }
         }
+        try {
+            countDownLatch.await();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
         long end = System.currentTimeMillis();
 
         System.out.println(end - start);
-        System.out.println(map.size());
+        System.out.println(hashtable.size());
     }
 }

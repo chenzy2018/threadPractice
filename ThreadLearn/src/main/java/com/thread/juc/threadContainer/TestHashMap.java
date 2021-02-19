@@ -1,22 +1,17 @@
-package com.thread.juc.threadPool;
+package com.thread.juc.threadContainer;
 
-import java.util.Hashtable;
+import java.util.HashMap;
 import java.util.UUID;
 import java.util.concurrent.CountDownLatch;
 
-/**
- * HashTable
- *
- * 方法加锁，线程安全，效率较差，基本不用
- */
-public class TestHashTable {
+public class TestHashMap {
 
-    static Hashtable<UUID, UUID> hashtable = new Hashtable<>();
+    static HashMap<UUID,UUID> map=new HashMap<UUID,UUID>();
     static int count = TestContants.count;
     static UUID[] keys = new UUID[count];
     static UUID[] values = new UUID[count];
     static final int threadCount = TestContants.threadCount;
-    static CountDownLatch countDownLatch = new CountDownLatch(threadCount);
+    static CountDownLatch countDownLatch = new CountDownLatch(threadCount-1);
 
     static {
         for (int i = 0; i < count; i++) {
@@ -36,7 +31,7 @@ public class TestHashTable {
         @Override
         public void run() {
             for (int i = start; i < start+gap; i++) {
-                hashtable.put(keys[i],values[i]);
+                map.put(keys[i],values[i]);
             }
             countDownLatch.countDown();
         }
@@ -46,7 +41,7 @@ public class TestHashTable {
         long start = System.currentTimeMillis();
         Thread[] threads = new Thread[threadCount];
         for (int i = 0; i < threadCount; i++) {
-            threads[i] = new MyThread(i*(count/threadCount));
+            threads[i] = new TestHashTable.MyThread(i*(count/threadCount));
         }
 
         for(Thread thread : threads){
@@ -60,6 +55,7 @@ public class TestHashTable {
                 e.printStackTrace();
             }
         }
+
         try {
             countDownLatch.await();
         } catch (InterruptedException e) {
@@ -69,6 +65,6 @@ public class TestHashTable {
         long end = System.currentTimeMillis();
 
         System.out.println(end - start);
-        System.out.println(hashtable.size());
+        System.out.println(map.size());
     }
 }

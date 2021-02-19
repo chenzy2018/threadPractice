@@ -1,8 +1,6 @@
-package com.thread.juc.threadPool.highUseContainer;
+package com.thread.juc.threadContainer.highUseContainer;
 
 import java.util.PriorityQueue;
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.PriorityBlockingQueue;
 
 /**
  * PriorityQueue的使用
