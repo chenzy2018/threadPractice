@@ -7,7 +7,7 @@ import java.util.concurrent.LinkedBlockingQueue;
 /**
  * LinkedBlockingQueue的使用
  *
- * 无界(长度不限，可以一直添加到内存溢出)阻塞队列，链表实现
+ * 无界(长度不限，最大是Integer.MAX_VALUE)阻塞队列，链表实现
  *
  * BlockingQueue在Queue基础上，增加了两个阻塞方法，put、take
  */
