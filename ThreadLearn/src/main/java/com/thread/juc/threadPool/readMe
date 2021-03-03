@@ -5,18 +5,26 @@
             shutdown()：设置线程池的状态，只会中断所有没有执行任务的线程
             shutdownNow()：设置线程池的状态，还会尝试停止正在运行的或者暂停任务的线程
 
+    两种线程池：
+        ThreadExecutorPool:
+            多个线程共享同一个任务队列
 
-构造函数：
-        int corePoolSize：线程池中的核心线程数量，<corePoolSize则创建新线程来执行任务，=corePoolSize则将任务加入到阻塞队列
-            使用prestartCoreThread方法，可以预先启动corePoolSize数量的线程
-        int maximumPoolSize：允许的最大线程数数量，BlockingQueue满了的时候，如果corePoolSize<maximumPoolSize的时候，则创建新线程
-        long keepAliveTime：线程存活时间，线程数>corePoolSize才有用(即核心线程不参与存活时间，一直存在，可以通过方法让核心线程参与，但是一般不会这样做)
-        TimeUnit unit：存活时间的单位值
-        BlockingQueue<Runnable> workQueue：存放任务的阻塞队列
-        ThreadFactory threadFactory：构建线程的工厂，用于定义新建线程的名称
-        RejectedExecutionHandler handler：饱和策略，线程数到了最大值且阻塞队列放满的情况的新来任务处理策略
-            AbortPolicy：直接抛出异常，默认
-            CallerRunsPolicy：用提交任务所在线程来执行任务
-            DiscardOldestPolicy：直接丢弃阻塞队列中最老的即最靠前的任务
-            DiscardPolicy：直接丢弃新任务
-            实现自己的饱和策略：实现RejectedExecutionHandler接口即可
+            构造函数：
+                    int corePoolSize：线程池中的核心线程数量，<corePoolSize则创建新线程来执行任务，=corePoolSize则将任务加入到阻塞队列
+                        使用prestartCoreThread方法，可以预先启动corePoolSize数量的线程
+                    int maximumPoolSize：允许的最大线程数数量，BlockingQueue满了的时候，如果corePoolSize<maximumPoolSize的时候，则创建新线程
+                    long keepAliveTime：线程存活时间，线程数>corePoolSize才有用(即核心线程不参与存活时间，一直存在，可以通过方法让核心线程参与，但是一般不会这样做)
+                    TimeUnit unit：存活时间的单位值
+                    BlockingQueue<Runnable> workQueue：存放任务的阻塞队列
+                    ThreadFactory threadFactory：构建线程的工厂，用于定义新建线程的名称
+                    RejectedExecutionHandler handler：饱和策略，线程数到了最大值且阻塞队列放满的情况的新来任务处理策略
+                        AbortPolicy：直接抛出异常，默认
+                        CallerRunsPolicy：用提交任务所在线程来执行任务
+                        DiscardOldestPolicy：直接丢弃阻塞队列中最老的即最靠前的任务
+                        DiscardPolicy：直接丢弃新任务
+                        实现自己的饱和策略：实现RejectedExecutionHandler接口即可
+
+        ForkJoinPool:
+            分而治之的思想，将大任务fork成小任务，每个小任务的结果再join成最终的结果返回
+            一个任务一个任务队列
+            适用于CPU密集型系统
